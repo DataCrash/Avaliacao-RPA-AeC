@@ -1,0 +1,28 @@
+﻿@model List<RPA.AeC.Domain.Entities.SearchedResult>
+@{
+    Layout = null;
+}
+
+<table class="table table-bordered table-striped" id="Tabela">
+    <thead>
+        <tr>
+            <th>Titulo</th>
+            <th>Área</th>
+            <th>Autor</th>
+            <th>Data de Publicação</th>
+            <th>Descrição</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="odd gradeA">
+                <td>@item.Title</td>
+                <td>@item.Area</td>
+                <td>@item.Author</td>
+                <td>@item.PublishDate.ToShortDateString()</td>
+                <td>@item.Description</td>
+            </tr>
+        }
+    </tbody>
+</table>
