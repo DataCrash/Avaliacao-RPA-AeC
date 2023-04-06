@@ -1,7 +1,7 @@
-﻿using RPA.AeC.Domain.Entities;
-using RPA.AeC.Domain.Repositories.MongoDB;
-using MongoDB.Driver;
+﻿using MongoDB.Driver;
 using RPA.AeC.API.Infra.Persistence.MongoDB.DBContext;
+using RPA.AeC.Domain.Entities;
+using RPA.AeC.Domain.Repositories.MongoDB;
 
 namespace RPA.AeC.Infra.Persistence.MongoDB.Repositories
 {
@@ -14,14 +14,13 @@ namespace RPA.AeC.Infra.Persistence.MongoDB.Repositories
             _context = new MongoDBContext();
         }
 
-        public Task Delete(string term) => 
-            _context.SearchedResult.DeleteManyAsync(x => x.SearchTerm == term);
+        public void Delete(string term) =>
+            _context.SearchedResult.DeleteMany(x => x.SearchTerm == term);
 
-        public Task Insert(List<SearchedResult> searchedResults) =>
-                _context.SearchedResult.InsertManyAsync(searchedResults);
+        public void Insert(List<SearchedResult> searchedResults) =>
+                _context.SearchedResult.InsertMany(searchedResults);
 
-        public async Task<List<SearchedResult>> GetByTerm(string term) => 
-            await _context.SearchedResult.Find(x => x.SearchTerm == term).ToListAsync();
-
+        public List<SearchedResult> GetByTerm(string term) =>
+            _context.SearchedResult.Find(x => x.SearchTerm == term).ToList();
     }
 }

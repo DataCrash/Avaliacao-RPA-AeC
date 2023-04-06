@@ -11,9 +11,9 @@ namespace RPA.AeC.API.Configurations
     {
         public static void AddDependenceInjections(this IServiceCollection services)
         {
-            services.AddTransient<IGetSearchedResultUseCase, GetSearchedResultUseCase>();
-            services.AddTransient<ISearchedResultRepository, SearchedResultRepository>();
-            services.AddTransient<ISearchAutomationService, SearchAutomationService>();
+            services.AddScoped<IGetSearchedResultUseCase, GetSearchedResultUseCase>();
+            services.AddScoped<ISearchedResultRepository, SearchedResultRepository>();
+            services.AddScoped<ISearchAutomationService, SearchAutomationService>();
         }
     }
 }

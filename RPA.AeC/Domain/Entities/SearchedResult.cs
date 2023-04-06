@@ -13,7 +13,7 @@ namespace RPA.AeC.Domain.Entities
         public string? Area { get; set; }
         public string? Description { get; set; }
         public string? Author { get; set; }
-        public DateTime? PublishDate { get; set; }
+        public DateTime PublishDate { get; set; }
         public DateTime SeachDate { get; set; } = DateTime.UtcNow;
         public string? SearchTerm { get; set; }
     }

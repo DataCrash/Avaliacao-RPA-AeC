@@ -5,16 +5,18 @@ using RPA.AeC.Domain.Entities;
 namespace RPA.AeC.Services.RPA
 {
     public class SearchAutomationService : ISearchAutomationService
-    { 
+    {
         public List<SearchedResult> Search(string searchText)
         {
             var _webDriver = new ChromeDriver();
 
-            _webDriver.Navigate().GoToUrl("https://www.aec.com.br/");
-            _webDriver.Manage().Window.Maximize();
-            _webDriver.FindElement(By.ClassName("buscar")).Click();
-            _webDriver.FindElement(By.Name("s")).SendKeys(searchText);
-            _webDriver.FindElement(By.TagName("form")).FindElement(By.TagName("button")).Click();
+            //_webDriver.Navigate().GoToUrl("https://www.aec.com.br/");
+            //_webDriver.Manage().Window.Maximize();
+            //_webDriver.FindElement(By.ClassName("buscar")).Click();
+            //_webDriver.FindElement(By.Name("s")).SendKeys(searchText);
+            //_webDriver.FindElement(By.TagName("form")).FindElement(By.TagName("button")).Click();
+
+            _webDriver.Navigate().GoToUrl("https://www.aec.com.br/?s=" + searchText);
 
             var resultList = new List<SearchedResult>();
 
@@ -56,10 +58,9 @@ namespace RPA.AeC.Services.RPA
                     var url = _webDriver.FindElement(By.ClassName("ver-mais")).FindElement(By.TagName("a")).GetAttribute("href");
                     _webDriver.Navigate().GoToUrl(url);
                 }
-
             } while (nextPage != string.Empty);
 
-            _webDriver.Dispose();
+            _webDriver.Close();
 
             return resultList;
         }

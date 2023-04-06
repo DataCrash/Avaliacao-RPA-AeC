@@ -1,11 +1,11 @@
-﻿using RPA.AeC.Application.UseCases.GetSearchedResultUseCase;
-using RPA.AeC.Domain.Entities;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using RPA.AeC.Application.UseCases.GetSearchedResultUseCase;
 
 namespace RPA.AeC.API.Controllers.v1
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Produces("application/json")]
     public class SearchedResultController : ControllerBase
     {
         private readonly IGetSearchedResultUseCase _getSearchedResultUseCase;
@@ -16,6 +16,7 @@ namespace RPA.AeC.API.Controllers.v1
         }
 
         [HttpGet("{term}")]
-        public Task<List<SearchedResult>> Get(string term) => _getSearchedResultUseCase.Execute(term);
+        public IActionResult Get(string term) =>
+            Ok(_getSearchedResultUseCase.Execute(term));
     }
 }

@@ -16,7 +16,7 @@ namespace RPA.AeC.Application.UseCases.GetSearchedResultUseCase
             _searchAutomation = searchAutomation;
         }
 
-        public Task<List<SearchedResult>> Execute(string term)
+        public List<SearchedResult> Execute(string term)
         {
             var searchedResults = _searchAutomation.Search(term);
 
