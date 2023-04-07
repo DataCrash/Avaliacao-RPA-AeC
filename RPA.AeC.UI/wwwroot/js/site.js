@@ -43,7 +43,7 @@ function TableBuilder(data) {
                 <td>${data[result].title}</td>
                 <td>${data[result].area}</td>
                 <td>${data[result].author}</td>
-                <td>${data[result].publishDate)}</td>
+                <td>${data[result].publishDate}</td>
                 <td>${data[result].description}</td>
             </tr>`;
     }
